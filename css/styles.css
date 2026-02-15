@@ -127,13 +127,16 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color
 
 /* --- DISEÑO PREMIUM DIVIDER --- */
 .premium-divider {
-    height: 100vh;
-    padding: 120px 0;
+    min-height: 100vh; /* Asegura que ocupe toda la pantalla */
+    display: flex;
+    align-items: center; /* ESTO centra el contenido verticalmente en el eje Y */
+    justify-content: center;
     background-color: var(--bg-main);
     background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 30px 30px; /* El patrón de puntos para que no se vea vacío */
+    background-size: 30px 30px;
     position: relative;
     border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 0 2rem; /* Eliminamos el 120px para no empujar el contenido hacia abajo */
 }
 
 .premium-grid {
@@ -141,6 +144,7 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color
     grid-template-columns: 1fr 1.5fr;
     gap: 4rem;
     align-items: center;
+    
 }
 
 /* Tarjeta de Cristal (Glassmorphism) */
@@ -406,7 +410,120 @@ html, body {
     }
 }
 
+/* AJUSTE ESPECÍFICO PARA MÓVILES PEQUEÑOS (iPhone SE y similares) */
+@media screen and (max-width: 480px) {
+    .premium-divider {
+        padding: 60px 20px; /* Reducimos el padding para ganar espacio vertical */
+    }
 
+    .premium-info h2 {
+        font-size: 1.8rem !important; /* El título era muy grande y se cortaba */
+        line-height: 1.2;
+    }
+
+    .premium-info p {
+        font-size: 0.95rem; /* Texto un poco más pequeño para legibilidad */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Las estadísticas se amontonaban, vamos a ponerlas en una sola columna o más compactas */
+    .premium-stats {
+        flex-direction: column; 
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .stat-item-alt {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Reducimos un poco el tamaño de la tarjeta del rayo para que no robe tanto espacio */
+    .glass-card {
+        width: 140px;
+        height: 140px;
+        border-radius: 30px;
+    }
+
+    .glass-card i {
+        font-size: 3.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .premium-visual {
+        margin-bottom: 2rem; /* Separa el rayo del título */
+    }
+    
+    .premium-info h2 {
+        font-size: 2rem !important; /* Un poco más pequeño para que no ocupe tanto alto */
+        line-height: 1.1;
+    }
+
+    .premium-stats {
+        flex-direction: column; /* Una debajo de otra */
+        gap: 1.5rem;
+        align-items: center;
+    }
+    
+    .stat-item-alt {
+        background: rgba(255,255,255,0.02); /* Un fondo muy sutil */
+        padding: 10px 20px;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 968px) {
+    .premium-divider {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Empuja todo al centro vertical */
+        min-height: 100vh;
+        padding: 40px 20px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .premium-stats {
+        flex-direction: column; /* Apila 99.9% sobre 20ms */
+        gap: 1.5rem; /* Espacio moderado entre los dos bloques */
+        align-items: center;
+    }
+
+    .stat-item-alt {
+        justify-content: center;
+        gap: 0.8rem; /* Espacio entre el icono y el texto */
+    }
+
+    /* Reducir el tamaño del título para que no empuje todo hacia abajo */
+    .premium-info h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Compactar el texto de las estadísticas */
+.stat-item-alt div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea el texto al inicio */
+    line-height: 1.2; /* Reduce el espacio entre líneas */
+}
+
+.stat-item-alt h3 {
+    font-size: 1.8rem;
+    margin: 0; /* Elimina márgenes que separan el número */
+    padding: 0;
+}
+
+.stat-item-alt p {
+    font-size: 0.8rem;
+    margin: 0 !important; /* Elimina cualquier margen residual */
+    padding: 0;
+    color: var(--accent);
+    font-weight: 700;
+}
 
 
 
